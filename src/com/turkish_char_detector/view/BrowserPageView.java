@@ -6,24 +6,24 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import javax.swing.Box;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import com.turkish_char_detector.model.ProgrammingLanguages;
 import com.turkish_char_detector.util.Icon;
 import com.turkish_char_detector.util.LangUtil;
 
 public class BrowserPageView extends JFrame {
   private static final long serialVersionUID = 1L;
-  // TODO: make languge-items enum
-  private static final String[] LANGUAGE_ITEMS = {"Java", "C++"};
 
   private JLabel explanationText;
   private JTextField projectFolderPath;
   private JButton browserButton;
   private JLabel languageText;
-  private JComboBox<String> languageCombobox;
+  private JComboBox<ProgrammingLanguages> languageCombobox;
 
   public BrowserPageView() {
     createPage();
@@ -110,9 +110,11 @@ public class BrowserPageView extends JFrame {
     return languageText;
   }
 
-  public JComboBox<String> getLanguageCombobox() {
+  public JComboBox<ProgrammingLanguages> getLanguageCombobox() {
     if (languageCombobox == null) {
-      languageCombobox = new JComboBox<>(LANGUAGE_ITEMS);
+      languageCombobox = new JComboBox<ProgrammingLanguages>();
+      languageCombobox
+          .setModel(new DefaultComboBoxModel<ProgrammingLanguages>(ProgrammingLanguages.values()));
       languageCombobox.setBackground(Color.WHITE);
     }
     return languageCombobox;
