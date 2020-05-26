@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>icons xml</comment>
+    <entry key="backIcon">resources\\icons\\back-arrow-32.png</entry>
+    <entry key="nextIcon">resources\\icons\\forward-button-32.png</entry>
+    <entry key="cancelIcon">resources\\icons\\cancel-32.png</entry>
+    <entry key="searchIcon">resources\\icons\\search-32.png</entry>
+</properties>

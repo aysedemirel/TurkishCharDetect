@@ -1,4 +1,4 @@
-package turkce_karakter_tespit.view;
+package com.turkish_char_detector.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -12,13 +12,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import turkce_karakter_tespit.util.Icons;
+import com.turkish_char_detector.util.Icon;
+import com.turkish_char_detector.util.LangUtil;
 
 public class BrowserPageView extends JFrame {
   private static final long serialVersionUID = 1L;
-  // TODO: create language file and read all strings from it
-  private static final String EXPLANATION_TEXT = "Lütfen proje yolunu seçiniz... ";
-  private static final String LANGUAGE = "Dil: ";
   private static final String[] LANGUAGE_ITEMS = {"Java", "C++"};
 
   private JLabel explanationText;
@@ -27,6 +25,7 @@ public class BrowserPageView extends JFrame {
   private JLabel languageText;
   private JComboBox<String> languageCombobox;
 
+  // TODO: move next,back,cancel in a private view
   private JPanel buttonPanel;
   private JButton nextButton;
   private JButton backButton;
@@ -48,12 +47,9 @@ public class BrowserPageView extends JFrame {
     gbc.weighty = 1.0;
 
     add(getBrowserPanel(), gbc);
-    gbc.gridx = 0;
     gbc.gridy = 1;
     gbc.ipady = 0;
-    gbc.weighty = 1.0;
     gbc.anchor = GridBagConstraints.PAGE_END;
-    gbc.insets = new Insets(10, 10, 10, 10);
     gbc.gridwidth = 2;
     add(getButtonPanel(), gbc);
   }
@@ -71,7 +67,7 @@ public class BrowserPageView extends JFrame {
 
   private JLabel getExplanationJLabel() {
     if (explanationText == null) {
-      explanationText = new JLabel(EXPLANATION_TEXT);
+      explanationText = new JLabel(LangUtil.getString("EXPLANATION_TEXT"));
     }
     return explanationText;
   }
@@ -97,9 +93,9 @@ public class BrowserPageView extends JFrame {
     return projectFolderPath;
   }
 
-  private JButton getBrowserButton() {
+  public JButton getBrowserButton() {
     if (browserButton == null) {
-      browserButton = new JButton(Icons.SEARCH_ICON);
+      browserButton = new JButton(Icon.getSearchIcon());
       browserButton.setBackground(Color.WHITE);
     }
     return browserButton;
@@ -115,12 +111,12 @@ public class BrowserPageView extends JFrame {
 
   private JLabel getLanguageTextLabel() {
     if (languageText == null) {
-      languageText = new JLabel(LANGUAGE);
+      languageText = new JLabel(LangUtil.getString("LANGUAGE") + ":");
     }
     return languageText;
   }
 
-  private JComboBox<String> getLanguageCombobox() {
+  public JComboBox<String> getLanguageCombobox() {
     if (languageCombobox == null) {
       languageCombobox = new JComboBox<>(LANGUAGE_ITEMS);
       languageCombobox.setBackground(Color.WHITE);
@@ -138,25 +134,25 @@ public class BrowserPageView extends JFrame {
     return buttonPanel;
   }
 
-  private JButton getBackButton() {
+  public JButton getBackButton() {
     if (backButton == null) {
-      backButton = new JButton(Icons.BACK_ICON);
+      backButton = new JButton(Icon.getBackIcon());
       backButton.setBackground(Color.WHITE);
     }
     return backButton;
   }
 
-  private JButton getNextButton() {
+  public JButton getNextButton() {
     if (nextButton == null) {
-      nextButton = new JButton(Icons.NEXT_ICON);
+      nextButton = new JButton(Icon.getNextIcon());
       nextButton.setBackground(Color.WHITE);
     }
     return nextButton;
   }
 
-  private JButton getCancelButton() {
+  public JButton getCancelButton() {
     if (cancelButton == null) {
-      cancelButton = new JButton(Icons.CANCEL_ICON);
+      cancelButton = new JButton(Icon.getCancelIcon());
       cancelButton.setBackground(Color.WHITE);
     }
     return cancelButton;

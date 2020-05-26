@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.3" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="turkce_karakter_tespit.view.BrowserPageView" project="turkce_karakter_tespit" 
-    file="/turkce_karakter_tespit/src/turkce_karakter_tespit/view/BrowserPageView.java" binary="false" 
+  <class id="1" language="java" name="com.turkish_char_detector.view.BrowserPageView" project="turkce_karakter_tespit" 
+    file="/turkce_karakter_tespit/src/com/turkish_char_detector/view/BrowserPageView.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="567" width="367" x="107" y="-18"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 

@@ -1,8 +1,11 @@
-package turkce_karakter_tespit;
+package com.turkish_char_detector;
 
 import java.awt.Dimension;
 import javax.swing.JFrame;
-import turkce_karakter_tespit.view.BrowserPageView;
+import com.turkish_char_detector.controller.BrowserPageController;
+import com.turkish_char_detector.util.Icon;
+import com.turkish_char_detector.util.LangUtil;
+import com.turkish_char_detector.view.BrowserPageView;
 
 public class Main {
   private static final int BROSER_PAGE_X_SIZE = 400;
@@ -11,17 +14,26 @@ public class Main {
   private static final int BROSER_PAGE_Y_LOCATION = 300;
 
   private BrowserPageView browserPageView;
+  @SuppressWarnings("unused")
+  private BrowserPageController browserPageController;
 
   public Main() {
-    init();
+    LangUtil.getInstance();
+    Icon.getInstance();
+    initViews();
+    initControllers();
   }
 
-  private void init() {
+  private void initViews() {
     browserPageView = new BrowserPageView();
     browserPageView.setVisible(true);
     browserPageView.setSize(new Dimension(BROSER_PAGE_X_SIZE, BROSER_PAGE_Y_SIZE));
     browserPageView.setLocation(BROSER_PAGE_X_LOCATION, BROSER_PAGE_Y_LOCATION);
     browserPageView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  }
+
+  private void initControllers() {
+    browserPageController = new BrowserPageController(browserPageView);
   }
 
   public static void main(String[] args) {
