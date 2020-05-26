@@ -14,42 +14,8 @@ public class BrowserPageController {
   }
 
   private void addListeners() {
-    // TODO: move next,back,cancel in a private controller
-    addNextButtonListener();
-    addBackButtonListener();
-    addCancelButtonListener();
     addBrowserButtonListener();
     addLanguageComboboxListener();
-  }
-
-  private void addNextButtonListener() {
-    browserPageView.getNextButton().addActionListener(new ActionListener() {
-
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        System.out.println("Next");
-      }
-    });
-  }
-
-  private void addBackButtonListener() {
-    browserPageView.getBackButton().addActionListener(new ActionListener() {
-
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        System.out.println("Back");
-      }
-    });
-  }
-
-  private void addCancelButtonListener() {
-    browserPageView.getCancelButton().addActionListener(new ActionListener() {
-
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        System.exit(0);
-      }
-    });
   }
 
   private void addBrowserButtonListener() {

@@ -3,9 +3,11 @@ package com.turkish_char_detector;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 import com.turkish_char_detector.controller.BrowserPageController;
+import com.turkish_char_detector.controller.ButtonPanelController;
 import com.turkish_char_detector.util.Icon;
 import com.turkish_char_detector.util.LangUtil;
 import com.turkish_char_detector.view.BrowserPageView;
+import com.turkish_char_detector.view.ButtonPanelView;
 
 public class Main {
   private static final int BROSER_PAGE_X_SIZE = 400;
@@ -16,6 +18,8 @@ public class Main {
   private BrowserPageView browserPageView;
   @SuppressWarnings("unused")
   private BrowserPageController browserPageController;
+  @SuppressWarnings("unused")
+  private ButtonPanelController buttonPanelController;
 
   public Main() {
     LangUtil.getInstance();
@@ -34,6 +38,7 @@ public class Main {
 
   private void initControllers() {
     browserPageController = new BrowserPageController(browserPageView);
+    buttonPanelController = new ButtonPanelController(ButtonPanelView.getInstance());
   }
 
   public static void main(String[] args) {

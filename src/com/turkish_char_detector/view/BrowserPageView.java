@@ -10,13 +10,13 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import com.turkish_char_detector.util.Icon;
 import com.turkish_char_detector.util.LangUtil;
 
 public class BrowserPageView extends JFrame {
   private static final long serialVersionUID = 1L;
+  // TODO: make languge-items enum
   private static final String[] LANGUAGE_ITEMS = {"Java", "C++"};
 
   private JLabel explanationText;
@@ -24,12 +24,6 @@ public class BrowserPageView extends JFrame {
   private JButton browserButton;
   private JLabel languageText;
   private JComboBox<String> languageCombobox;
-
-  // TODO: move next,back,cancel in a private view
-  private JPanel buttonPanel;
-  private JButton nextButton;
-  private JButton backButton;
-  private JButton cancelButton;
 
   public BrowserPageView() {
     createPage();
@@ -51,7 +45,7 @@ public class BrowserPageView extends JFrame {
     gbc.ipady = 0;
     gbc.anchor = GridBagConstraints.PAGE_END;
     gbc.gridwidth = 2;
-    add(getButtonPanel(), gbc);
+    add(ButtonPanelView.getInstance(), gbc);
   }
 
   private Box getBrowserPanel() {
@@ -122,39 +116,5 @@ public class BrowserPageView extends JFrame {
       languageCombobox.setBackground(Color.WHITE);
     }
     return languageCombobox;
-  }
-
-  private JPanel getButtonPanel() {
-    if (buttonPanel == null) {
-      buttonPanel = new JPanel();
-      buttonPanel.add(getBackButton());
-      buttonPanel.add(getNextButton());
-      buttonPanel.add(getCancelButton());
-    }
-    return buttonPanel;
-  }
-
-  public JButton getBackButton() {
-    if (backButton == null) {
-      backButton = new JButton(Icon.getBackIcon());
-      backButton.setBackground(Color.WHITE);
-    }
-    return backButton;
-  }
-
-  public JButton getNextButton() {
-    if (nextButton == null) {
-      nextButton = new JButton(Icon.getNextIcon());
-      nextButton.setBackground(Color.WHITE);
-    }
-    return nextButton;
-  }
-
-  public JButton getCancelButton() {
-    if (cancelButton == null) {
-      cancelButton = new JButton(Icon.getCancelIcon());
-      cancelButton.setBackground(Color.WHITE);
-    }
-    return cancelButton;
   }
 }
