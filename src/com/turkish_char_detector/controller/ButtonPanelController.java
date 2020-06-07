@@ -30,14 +30,26 @@ public class ButtonPanelController {
         buttonPanelView.getBackButton().setEnabled(true);
         if (mainFrame.getBrowserPageView().isVisible()) {
           mainFrame.remove(mainFrame.getBrowserPageView());
+          mainFrame.getBrowserPageView().setVisible(false);
           mainFrame.add(mainFrame.getFilesFoundPageView());
+          mainFrame.getFilesFoundPageView().setVisible(true);
           // FIXME: Langutil
           mainFrame.setTitle("Bulunan Dosyalar");
           mainFrame.pack();
           mainFrame.revalidate();
           mainFrame.repaint();
         } else if (mainFrame.getFilesFoundPageView().isVisible()) {
-
+          mainFrame.remove(mainFrame.getFilesFoundPageView());
+          mainFrame.getFilesFoundPageView().setVisible(false);
+          mainFrame.add(mainFrame.getProgressPanelView());
+          mainFrame.getProgressPanelView().setVisible(true);
+          // FIXME: Langutil
+          mainFrame.setTitle("Lütfen bekleyiniz ...");
+          mainFrame.pack();
+          mainFrame.revalidate();
+          mainFrame.repaint();
+          buttonPanelView.getBackButton().setEnabled(false);
+          buttonPanelView.getNextButton().setEnabled(false);
         }
       }
     });
@@ -52,7 +64,9 @@ public class ButtonPanelController {
         buttonPanelView.getNextButton().setEnabled(true);
         if (mainFrame.getFilesFoundPageView().isVisible()) {
           mainFrame.remove(mainFrame.getFilesFoundPageView());
+          mainFrame.getFilesFoundPageView().setVisible(false);
           mainFrame.add(mainFrame.getBrowserPageView());
+          mainFrame.getBrowserPageView().setVisible(true);
           // FIXME: Langutil
           mainFrame.setTitle("Lütfen proje yolunu seçiniz");
           mainFrame.pack();

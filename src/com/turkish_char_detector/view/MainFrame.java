@@ -18,6 +18,8 @@ public class MainFrame extends JFrame {
   private GridBagConstraints gbc;
   private BrowserPageView browserPageView;
   private FilesFoundPageView filesFoundPageView;
+  private ProgressPanelView progressPanelView;
+  private ResultPanelView resultPanelView;
   private ButtonPanelView buttonPanelView;
   @SuppressWarnings("unused")
   private ButtonPanelController buttonPanelController;
@@ -82,6 +84,22 @@ public class MainFrame extends JFrame {
       filesFoundPageView.setVisible(true);
     }
     return filesFoundPageView;
+  }
+
+  public ProgressPanelView getProgressPanelView() {
+    if (progressPanelView == null) {
+      progressPanelView = new ProgressPanelView();
+      progressPanelView.setVisible(true);
+    }
+    return progressPanelView;
+  }
+
+  public ResultPanelView getResultPanelView() {
+    if (resultPanelView == null) {
+      resultPanelView = new ResultPanelView();
+      resultPanelView.setVisible(true);
+    }
+    return resultPanelView;
   }
 
   public ButtonPanelView getButtonPanelView() {

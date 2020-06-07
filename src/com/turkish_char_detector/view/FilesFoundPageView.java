@@ -12,7 +12,7 @@ public class FilesFoundPageView extends JPanel {
   private JTable fileListTable;
   // FIXME: example list
   private String[][] fileList = {{"101", "Amit"}, {"101", "Sachin"}, {"101", "Sachin"}};
-  // FIXME: add to LangUtil
+  // FIXME: add to LangUtil -> get from enum
   private String[] tableColumnHeader = {"FILE", "PATH"};
 
   private JScrollPane tableScroll;
