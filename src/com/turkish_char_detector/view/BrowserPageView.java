@@ -2,50 +2,37 @@ package com.turkish_char_detector.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.io.File;
 import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
-import com.turkish_char_detector.model.ProgrammingLanguages;
+import com.turkish_char_detector.controller.BrowserPageController;
+import com.turkish_char_detector.model.ProgrammingLanguageNames;
 import com.turkish_char_detector.util.Icon;
 import com.turkish_char_detector.util.LangUtil;
 
-public class BrowserPageView extends JFrame {
+public class BrowserPageView extends JPanel {
   private static final long serialVersionUID = 1L;
 
   private JLabel explanationText;
   private JTextField projectFolderPath;
   private JButton browserButton;
   private JLabel languageText;
-  private JComboBox<ProgrammingLanguages> languageCombobox;
+  private JComboBox<ProgrammingLanguageNames> languageCombobox;
+  private JFileChooser projectPathChooser;
 
   public BrowserPageView() {
     createPage();
+    new BrowserPageController(this);
   }
 
   private void createPage() {
-    GridBagLayout grid = new GridBagLayout();
-    GridBagConstraints gbc = new GridBagConstraints();
-    setLayout(grid);
-    gbc.fill = GridBagConstraints.HORIZONTAL;
-    gbc.gridx = 0;
-    gbc.gridy = 0;
-    gbc.anchor = GridBagConstraints.CENTER;
-    gbc.insets = new Insets(10, 10, 10, 10);
-    gbc.weighty = 1.0;
-
-    add(getBrowserPanel(), gbc);
-    gbc.gridy = 1;
-    gbc.ipady = 0;
-    gbc.anchor = GridBagConstraints.PAGE_END;
-    gbc.gridwidth = 2;
-    add(ButtonPanelView.getInstance(), gbc);
+    add(getBrowserPanel());
   }
 
   private Box getBrowserPanel() {
@@ -74,7 +61,7 @@ public class BrowserPageView extends JFrame {
     return browserBox;
   }
 
-  private JTextField getProjectFolderPath() {
+  public JTextField getProjectFolderPath() {
 
     if (projectFolderPath == null) {
       projectFolderPath = new JTextField("", 12);
@@ -82,7 +69,8 @@ public class BrowserPageView extends JFrame {
       projectFolderPath.setOpaque(true);
       projectFolderPath.setEditable(false);
       projectFolderPath.setFocusable(false);
-      projectFolderPath.setMaximumSize(new Dimension(400, 30));
+      projectFolderPath.setMaximumSize(new Dimension(600, 30));
+      projectFolderPath.setPreferredSize(new Dimension(600, 30));
     }
     return projectFolderPath;
   }
@@ -110,13 +98,39 @@ public class BrowserPageView extends JFrame {
     return languageText;
   }
 
-  public JComboBox<ProgrammingLanguages> getLanguageCombobox() {
+  public JComboBox<ProgrammingLanguageNames> getLanguageCombobox() {
     if (languageCombobox == null) {
-      languageCombobox = new JComboBox<ProgrammingLanguages>();
-      languageCombobox
-          .setModel(new DefaultComboBoxModel<ProgrammingLanguages>(ProgrammingLanguages.values()));
+      languageCombobox = new JComboBox<ProgrammingLanguageNames>();
+      languageCombobox.setModel(
+          new DefaultComboBoxModel<ProgrammingLanguageNames>(ProgrammingLanguageNames.values()));
       languageCombobox.setBackground(Color.WHITE);
     }
     return languageCombobox;
+  }
+
+  public JFileChooser getProjectPathChooser() {
+    if (projectPathChooser == null) {
+      projectPathChooser = new JFileChooser();
+      projectPathChooser.setCurrentDirectory(new java.io.File("."));
+      projectPathChooser.setDialogTitle(LangUtil.getString("CHOOSER_TITLE"));
+      projectPathChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+      projectPathChooser.setAcceptAllFileFilterUsed(false);
+    }
+    return projectPathChooser;
+  }
+
+  public File getSelectedProjectPath() {
+    return projectPathChooser.getSelectedFile();
+  }
+
+  public String getSelectedProjectName() {
+    String projectPath = projectPathChooser.getSelectedFile().getPath();
+    int beginningIndex = projectPath.lastIndexOf('\\') + 1;
+    String projectName = projectPath.substring(beginningIndex, projectPath.length());
+    return projectName;
+  }
+
+  public String getSelectedLanguage() {
+    return languageCombobox.getSelectedItem().toString();
   }
 }

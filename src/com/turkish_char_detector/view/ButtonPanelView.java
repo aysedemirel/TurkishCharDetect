@@ -8,18 +8,10 @@ import com.turkish_char_detector.util.Icon;
 public class ButtonPanelView extends JPanel {
   private static final long serialVersionUID = 1L;
 
-  private static ButtonPanelView instance;
 
   private JButton nextButton;
   private JButton backButton;
   private JButton cancelButton;
-
-  public static ButtonPanelView getInstance() {
-    if (instance == null) {
-      instance = new ButtonPanelView();
-    }
-    return instance;
-  }
 
   public ButtonPanelView() {
     add(getBackButton());
@@ -31,6 +23,7 @@ public class ButtonPanelView extends JPanel {
     if (backButton == null) {
       backButton = new JButton(Icon.getBackIcon());
       backButton.setBackground(Color.WHITE);
+      backButton.setEnabled(false);
     }
     return backButton;
   }
